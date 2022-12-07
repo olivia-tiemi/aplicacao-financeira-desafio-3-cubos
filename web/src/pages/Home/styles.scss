@@ -1,0 +1,65 @@
+@import "../../styles.scss";
+
+.container-home {
+  background-color: #fff;
+  border-radius: 60px 60px 0px 0px;
+  width: 100%;
+  height: calc(100vh - 116px);
+  position: absolute;
+  top: 116px;
+  padding: 55px 100px 55px 105px;
+  font-family: "Lato", sans-serif;
+  z-index: 1;
+
+  .filtrar {
+    all: unset;
+    cursor: pointer;
+    @include display_flex(row, space-between, center);
+    background: #fafafa;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 8px 15px;
+    gap: 4px;
+    margin-bottom: 25px;
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid currentColor;
+    }
+
+    &.aberto {
+      &::after {
+        content: "";
+        border-top: 0;
+        border-bottom: 5px solid;
+      }
+    }
+
+    &:active {
+      animation: bounce 0.1s ease-in;
+    }
+  }
+  .tabela-resumo {
+    @include display_flex(row, flex-start, flex-start);
+    gap: 34px;
+  }
+}
+
+.wrap-filtro {
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+  height: auto;
+  max-height: 9999px;
+}
+
+.wrap-filtro.collapsed {
+  max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+}

@@ -1,0 +1,23 @@
+@import "../../styles.scss";
+
+button {
+  all: unset;
+  cursor: pointer;
+  background-color: $azul_roxo;
+  border-radius: 5px;
+  color: #ffff;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: $azul_escuro;
+    opacity: 0.8;
+    transition: background-color 0.4s ease-in;
+  }
+
+  &:active {
+    animation: bounce 0.1s ease-in;
+  }
+}

@@ -1,0 +1,44 @@
+@import "../../styles.scss";
+
+.container-resumo {
+  .resumo {
+    background-color: #fafafa;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    height: 196px;
+    width: 236px;
+    border-radius: 10px;
+    padding: 26px 33px 31px 33px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #2f2f2f;
+    @include display_flex(column, space-between, flex-start);
+    .resumo-linha {
+      @include display_flex(row, space-between, center);
+      width: 100%;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 15px;
+      .saldo-positivo {
+        color: $azul_claro;
+      }
+      &:last-child {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+    .divisor {
+      width: 189px;
+      border: 1px solid #eaeaea;
+    }
+  }
+  button {
+    font-family: $font_rubik;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    height: 46px;
+    width: 236px;
+    border-radius: 5px;
+  }
+}

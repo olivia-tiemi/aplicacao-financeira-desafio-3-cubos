@@ -1,0 +1,61 @@
+@import "../../styles.scss";
+
+.container-filtro {
+  background: #fafafa;
+  box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 959px;
+  margin: 0 0 61px 0;
+  padding: 32px 0 13px 31px;
+
+  .wrap-categorias-botoes {
+    @include display_flex(column, flex-start, flex-start);
+
+    strong {
+      color: #b9b9b9;
+      font-family: $font_rubik;
+      font-family: Rubik;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 14px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    .container-categorias {
+      @include display_flex(row, flex-start, center);
+      max-width: 60vw;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .container-botoes {
+      @include display_flex(row, flex-start, flex-start);
+      gap: 18px;
+      margin-top: 18px;
+      .botao-roxo {
+        background-color: $azul_roxo;
+        color: #ffff;
+      }
+      button {
+        color: #000000;
+        background-color: #fafafa;
+        box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        font-family: $font_lato;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        letter-spacing: 0px;
+        text-align: center;
+        width: 98px;
+        height: 30px;
+        padding: 8px 4px;
+        transition: ease-in 0.2s;
+        &:hover {
+          font-size: 12px;
+          transition: ease-in 0.2s;
+        }
+      }
+    }
+  }
+}

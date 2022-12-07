@@ -1,0 +1,39 @@
+.container-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #484848;
+  position: relative;
+}
+
+.container-input input {
+  all: unset;
+  box-sizing: border-box;
+  background-color: #ffff;
+  width: 449px;
+  height: 63px;
+  border-radius: 5px;
+  border: 1px solid #555555;
+  padding: 10px;
+}
+
+.container-input input:focus {
+  border: 2px solid #000;
+}
+
+.container-input img {
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  opacity: 0.6;
+}
+
+.container-input .olho-fechado {
+  position: absolute;
+  top: 53px;
+  right: 19px;
+}

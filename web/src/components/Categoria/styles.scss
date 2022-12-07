@@ -1,0 +1,37 @@
+@import "../../styles.scss";
+
+.miniContainer-categoria {
+  @include display_flex(row, space-between, center);
+  cursor: pointer;
+  gap: 10px;
+  min-width: 80px;
+  height: 20px;
+  background: #fafafa;
+  box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: $font_rubik;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #000000;
+  padding: 6px 10px 2px 10px;
+  .botao-mais {
+    transform: rotate(45deg);
+    filter: brightness(0);
+  }
+  &:hover {
+    animation: liftButton 0.1s forwards;
+    transition: all 0.2s ease-in;
+  }
+}
+
+.categoria-aplicada {
+  background-color: $azul_roxo;
+  color: #ffff;
+}
+
+@keyframes liftButton {
+  to {
+    transform: translateY(-3px);
+  }
+}

@@ -1,0 +1,32 @@
+@import "../../styles.scss";
+
+.container-erro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: $font_rubik;
+  background: linear-gradient(90.23deg, #05ede3 0.02%, #645ffb 99.63%);
+
+  .nao-encontrado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    width: 350px;
+    height: 200px;
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 200px;
+      height: 50px;
+    }
+  }
+}

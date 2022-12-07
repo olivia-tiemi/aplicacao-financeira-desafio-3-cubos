@@ -1,0 +1,20 @@
+@import "../../styles.scss";
+
+.cadastro .container-r {
+  animation: popUp 0.4s forwards;
+  button {
+    margin-top: 7px;
+  }
+  p {
+    color: $azul_roxo;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 8px;
+  }
+  a {
+    color: $azul_roxo;
+    text-decoration: none;
+  }
+}

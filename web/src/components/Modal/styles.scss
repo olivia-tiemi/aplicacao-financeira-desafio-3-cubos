@@ -1,0 +1,105 @@
+@import "../../styles.scss";
+
+.modal {
+  @include display_flex(row, center, center);
+  background: rgba(61, 61, 61, 0.48);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+
+  .modal-container {
+    animation: popUp 0.4s forwards;
+  }
+
+  h1 {
+    font-family: $font_rubik;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 43px;
+  }
+
+  form {
+    @include display_flex(column, flex-start, center);
+    background-color: #fff;
+    width: 611px;
+    height: 879px;
+    padding: 6vh;
+    gap: 26px;
+    position: relative;
+    border-radius: 20px;
+
+    .close-btn {
+      cursor: pointer;
+      position: absolute;
+      top: 67px;
+      right: 64px;
+    }
+
+    .seta-select {
+      @include display_flex(column, flex-start, flex-start);
+      height: 90px;
+      width: 449px;
+      position: relative;
+      font-family: $font_rubik;
+      font-weight: 400;
+      color: #484848;
+      select {
+        all: unset;
+        box-sizing: border-box;
+        background-color: transparent;
+        width: 449px;
+        height: 63px;
+        border-radius: 5px;
+        border: 1px solid #555555;
+        padding: 20px 9px;
+        position: absolute;
+        top: 30px;
+        &:focus {
+          border: 2px solid #000;
+        }
+      }
+      img {
+        position: absolute;
+        top: 57px;
+        right: 19px;
+      }
+    }
+    input:nth-child(2) {
+      padding-top: 20px;
+    }
+  }
+  .entrada-saida button {
+    height: 60px;
+    width: 220px;
+    border-radius: 10px;
+    padding: 0;
+  }
+  button {
+    box-sizing: border-box;
+    height: 46px;
+    width: 236px;
+    border-radius: 5px;
+    padding: 11px 47px 14px 47px;
+  }
+}
+.cinza {
+  background-color: #b9b9b9;
+  &:hover {
+    background-color: #b9b9b9;
+  }
+}
+.azul {
+  background-color: #3a9ff1;
+  &:hover {
+    background-color: #3a9ff1;
+  }
+}
+.vermelho {
+  background-color: #ff576b;
+  &:hover {
+    background-color: #ff576b;
+  }
+}
