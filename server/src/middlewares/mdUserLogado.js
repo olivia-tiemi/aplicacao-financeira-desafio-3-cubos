@@ -2,7 +2,7 @@ const {
   verificarDados,
   verificarEmailCadastrado,
 } = require("../utils/verificaDados.js");
-const pool = require("../connection");
+const knex = require("../connection");
 
 const verificarTransacao = async (req, res, next) => {
   const { descricao, valor, data, categoria_id, tipo } = req.body;
@@ -29,17 +29,15 @@ const verificarTransacao = async (req, res, next) => {
       .json({ mensagem: "O tipo de transação é inválida." });
   }
 
-  const query = "SELECT * FROM categorias WHERE id = $1;";
-
   try {
-    const { rows, rowCount } = await pool.query(query, [categoria_id]);
+    const categoriaAtual = await knex("categorias").where("id", categoria_id);
 
-    if (rowCount <= 0)
+    if (categoriaAtual.length <= 0)
       return res
         .status(404)
         .json({ mensagem: "A categoria escolhida é inválida." });
 
-    req.categoriaAtual = rows[0];
+    req.categoriaAtual = categoriaAtual;
   } catch (error) {
     return res.status(500).json({ mensagem: "Erro interno do servidor" });
   }
@@ -60,8 +58,8 @@ const verificarAtualizacaoCadastro = async (req, res, next) => {
   )
     return;
 
-  const [rowCount] = await verificarEmailCadastrado(res, { email });
-  if (rowCount > 0 && email !== usuario_email) {
+  const emailCadastrado = await verificarEmailCadastrado(res, { email });
+  if (emailCadastrado.length > 0 && email !== usuario_email) {
     return res.status(400).json({ mensagem: "Email ou senha inválido(s)" });
   }
 
@@ -73,13 +71,11 @@ const verificarUsuarioTransacao = async (req, res, next) => {
   const { id: usuario_id } = req.usuario;
 
   try {
-    const query = `
-    SELECT * from transacoes WHERE id = $1 AND usuario_id = $2;
-  `;
+    const transacao = await knex("transacoes")
+      .where("id", transacao_id)
+      .andWhere({ usuario_id });
 
-    const { rowCount } = await pool.query(query, [transacao_id, usuario_id]);
-
-    if (rowCount <= 0)
+    if (transacao.length <= 0)
       return res.status(404).json({ mensagem: "Transação não encontrada." });
   } catch (error) {
     return res.status(500).json({ mensagem: "Erro interno do servidor" });
