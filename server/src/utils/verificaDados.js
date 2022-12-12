@@ -12,8 +12,8 @@ function verificarDados(res, objeto) {
 
 async function verificarEmailCadastrado(res, { email }) {
   try {
-    const emailCadastrado = await knex("usuarios").where({ email });
-    return emailCadastrado;
+    const usuario = await knex("usuarios").where({ email });
+    return usuario;
   } catch (error) {
     res.status(500).json({ mensagem: "Erro interno no servidor" });
   }

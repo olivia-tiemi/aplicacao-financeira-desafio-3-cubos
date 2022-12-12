@@ -37,7 +37,7 @@ const verificarTransacao = async (req, res, next) => {
         .status(404)
         .json({ mensagem: "A categoria escolhida é inválida." });
 
-    req.categoriaAtual = categoriaAtual;
+    req.categoriaAtual = categoriaAtual[0];
   } catch (error) {
     return res.status(500).json({ mensagem: "Erro interno do servidor" });
   }

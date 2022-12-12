@@ -51,7 +51,7 @@ const verificarLogin = async (req, res, next) => {
 
     if (usuario.length <= 0)
       return res.status(403).json({ mensagem: "Não autorizado" });
-    const { senha: _, ...dadosUsuario } = usuario;
+    const { senha: _, ...dadosUsuario } = usuario[0];
 
     req.usuario = dadosUsuario;
     next();
