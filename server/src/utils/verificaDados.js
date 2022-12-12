@@ -1,4 +1,4 @@
-const pool = require("../connection");
+const knex = require("../connection");
 
 function verificarDados(res, objeto) {
   for (let chave in objeto) {
@@ -10,13 +10,10 @@ function verificarDados(res, objeto) {
   return true;
 }
 
-async function verificarEmailCadastrado(res, objeto) {
-  const query = `
-    SELECT * from usuarios WHERE email = $1
-  `;
+async function verificarEmailCadastrado(res, { email }) {
   try {
-    const { rows, rowCount } = await pool.query(query, [objeto.email]);
-    return [rowCount, rows];
+    const emailCadastrado = await knex("usuarios").where({ email });
+    return emailCadastrado;
   } catch (error) {
     res.status(500).json({ mensagem: "Erro interno no servidor" });
   }
@@ -24,7 +21,7 @@ async function verificarEmailCadastrado(res, objeto) {
 
 function somaValoresFiltrados(transacoes) {
   const extrato = { entrada: 0, saida: 0 };
-  transacoes.map(op => {
+  transacoes.map((op) => {
     if (op.tipo === "entrada") {
       extrato.entrada += parseFloat(op.valor);
     } else if (op.tipo === "saida") {

@@ -4,7 +4,7 @@ const {
   verificarDados,
   verificarEmailCadastrado,
 } = require("../utils/verificaDados.js");
-const pool = require("../connection");
+const knex = require("../connection");
 
 const verificarDadosCadastro = async (req, res, next) => {
   const { nome, email, senha } = req.body;
@@ -18,8 +18,8 @@ const verificarDadosCadastro = async (req, res, next) => {
   )
     return;
 
-  const [rowCount] = await verificarEmailCadastrado(res, { email });
-  if (rowCount > 0) {
+  const emailCadastrado = await verificarEmailCadastrado(res, { email });
+  if (emailCadastrado.length > 0) {
     return res.status(400).json({ mensagem: "Email ou senha inválido(s)" });
   }
 
@@ -31,8 +31,8 @@ const verificarDadosLogin = async (req, res, next) => {
 
   if (!verificarDados(res, { email, senha })) return;
 
-  const [rowCount] = await verificarEmailCadastrado(res, { email });
-  if (rowCount <= 0) {
+  const emailCadastrado = await verificarEmailCadastrado(res, { email });
+  if (emailCadastrado.length <= 0) {
     return res.status(400).json({ mensagem: "Email ou senha inválido(s)" });
   }
 
@@ -47,21 +47,17 @@ const verificarLogin = async (req, res, next) => {
   const token = authorization.split(" ")[1];
   try {
     const { id } = jwt.verify(token, senhaJwt);
-    const queryConsulta = `
-      SELECT * FROM usuarios WHERE id = $1
-    `;
-    const { rows, rowCount } = await pool.query(queryConsulta, [id]);
+    const usuario = await knex("usuarios").where({ id });
 
-    if (rowCount <= 0)
+    if (usuario.length <= 0)
       return res.status(403).json({ mensagem: "Não autorizado" });
-    const { senha: _, ...dadosUsuario } = rows[0];
+    const { senha: _, ...dadosUsuario } = usuario;
 
     req.usuario = dadosUsuario;
     next();
   } catch (error) {
     return res.status(401).json({
-      mensagem:
-        "Ops, sua sessão expirou!",
+      mensagem: "Ops, sua sessão expirou!",
     });
   }
 };
